@@ -106,3 +106,5 @@ Then, the image can be called by url from within the program
 ```
 
 Please see the sample file "HomePage.js" for a demonstration use case how this service might be called from a React front end, here simply pulling some basic data from a form mixed with static example data. 
+
+![UML Sequence Diagram for Graph Maker Microservice A SUHRM](./UML_sequence_suhrm.png)
