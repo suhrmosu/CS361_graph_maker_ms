@@ -11,33 +11,13 @@
     // URL: https://canvas.oregonstate.edu/courses/1967421/pages/project-overview?module_item_id=24453571
 */
 
-// module to compute the graph
-import { Chart as ChartJS, 
-    CategoryScale, 
-    LinearScale, 
-    BarElement, 
-    Title, 
-    ArcElement, 
-    Tooltip, 
-    Legend 
-} from 'chart.js';
-
 import ChartJSImage from 'chart.js-image';
 
-ChartJS.register(
-    ArcElement,  
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title, 
-    Tooltip, 
-    Legend);
-
-const makeDoughnut = async (title, categ) => {
+const makeGraph = async (title, categ, type) => {
     const myLineChart = 
         ChartJSImage().chart(
         {
-            type: 'doughnut',
+            type: type,
             data: {
                 labels: categ.map(row => row.name),
                 datasets: [
@@ -70,101 +50,11 @@ const makeDoughnut = async (title, categ) => {
     .height(300); // 300px
     
     myLineChart.toURL(); 
-    // await myLineChart.toFile(`./images/${encodeURI(title)}_doughnut.jpg`); 
-    await myLineChart.toFile(`./images/_doughnut.jpg`); 
-    myLineChart.toDataURI(); 
-    myLineChart.toBuffer(); 
-    return myLineChart
-}
-
-const makePie = async (title, categ) => {
-    const myLineChart = 
-        ChartJSImage().chart(
-        {
-            type: 'pie',
-            data: {
-                labels: categ.map(row => row.name),
-                datasets: [
-                {
-                    label: 'Category by Value',
-                    data: categ.map(row => row.value),
-                    hoverOffset: 0
-                }
-                ]
-            },
-            options: {
-                responsive: true,
-                legend: {
-                    position: 'chartArea',
-                  },
-                title: {
-                    display: true,
-                    text: title
-                },
-                tooltips: {
-                    mode: 'index',
-                },
-                hover: {
-                    mode: 'index',
-                },
-              },
-            }
-    ).backgroundColor('white')
-    .width(500) // 500px
-    .height(300); // 300px
-    
-    myLineChart.toURL(); 
-    // await myLineChart.toFile(`./images/${encodeURI(title)}_pie.jpg`); 
-    await myLineChart.toFile(`./images/_pie.jpg`); 
+    await myLineChart.toFile(`./images/_${type}.jpg`); 
     myLineChart.toDataURI(); 
     myLineChart.toBuffer(); 
     return myLineChart
 }
 
 
-const makeBar = async (title, categ) => {
-    const myLineChart = 
-        ChartJSImage().chart(
-        {
-            type: 'bar',
-            data: {
-                labels: categ.map(row => row.name),
-                datasets: [
-                {
-                    label: 'categories',
-                    data: categ.map(row => row.value),
-                    hoverOffset: 0
-                }
-                ]
-            },
-            options: {
-                responsive: true,
-                legend: {
-                    position: 'chartArea',
-                  },
-                title: {
-                    display: true,
-                    text: title
-                },
-                tooltips: {
-                    mode: 'index',
-                },
-                hover: {
-                    mode: 'index',
-                },
-              },
-            }
-    ).backgroundColor('white')
-    .width(500) // 500px
-    .height(300); // 300px
-    
-    myLineChart.toURL(); 
-    // await myLineChart.toFile(`./images/${encodeURI(title)}_bar.jpg`); 
-    await myLineChart.toFile(`./images/_bar.jpg`); 
-    myLineChart.toDataURI(); 
-    myLineChart.toBuffer(); 
-    return myLineChart
-}
-    
-
-export {makeDoughnut, makePie, makeBar}
+export {makeGraph}

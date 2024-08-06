@@ -32,15 +32,12 @@ app.use(function(req, res, next) {
 });
 
 app.post('/doughnut', (req, res) => {
-    // make graph
-    visuals.makeDoughnut(
+    visuals.makeGraph(
         req.body.title, 
-        req.body.categ)
+        req.body.categ,
+        'doughnut')
     .then(chart => {
-        console.log(` name: "${chart.title}" object: ${chart} images/_doughnut.jpg was created.`);
-        // res.status(201).json(categ);
-        // send result 
-        // res.sendFile(`images/${encodeURI(req.body.title)}_doughnut.jpg` , { root : "./"});
+        console.log(` name: images/_doughnut.jpg was created.`);
         res.sendFile(`images/_doughnut.jpg` , { root : "./"});
     })
     .catch(error => {
@@ -51,15 +48,12 @@ app.post('/doughnut', (req, res) => {
 
 
 app.post('/pie', (req, res) => {
-    // make graph
-    visuals.makePie(
+    visuals.makeGraph(
         req.body.title, 
-        req.body.categ)
+        req.body.categ,
+        'pie')
     .then(chart => {
-        console.log(` name: "${chart.title}" object: ${chart} images/_pie.jpg was created.`);
-        // res.status(201).json(categ);
-        // send result 
-        // res.sendFile(`images/${encodeURI(req.body.title)}_pie.jpg` , { root : "./"});
+        console.log(` name: images/_pie.jpg was created.`);
         res.sendFile(`images/_pie.jpg` , { root : "./"});
     })
     .catch(error => {
@@ -70,15 +64,12 @@ app.post('/pie', (req, res) => {
 
 
 app.post('/bar', (req, res) => {
-    // make graph
-    visuals.makeBar(
+    visuals.makeGraph(
         req.body.title, 
-        req.body.categ)
+        req.body.categ,
+        'bar')
     .then(chart => {
-        console.log(` name: "${chart.title}" object: ${chart} images/_bar.jpg was created.`);
-        // res.status(201).json(categ);
-        // send result 
-        // res.sendFile(`images/${encodeURI(req.body.title)}_bar.jpg` , { root : "./"});
+        console.log(` name: images/_bar.jpg was created.`);
         res.sendFile(`images/_bar.jpg` , { root : "./"});
     })
     .catch(error => {
